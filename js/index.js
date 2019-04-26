@@ -1,16 +1,16 @@
 // Add event handlers when the DOM is ready
-$().ready(() => {
+$(() => {
   // Set the selected nav item to active
-  $('#navbar').on('click', 'a', function() {
+  $('#nav-bar').on('click', 'a', function() {
     const a = $(this);
     const li = a.parent();
 
-    $('#navbar .container ul li a').removeClass('active');
+    $('#nav-bar ul li a').removeClass('active');
     if (!li.hasClass('logo')) a.addClass('active');
   });
 
   // Smooth scrolling for navbar items
-  $('#navbar').on('click', 'a', function(event) {
+  $('#nav-bar').on('click', 'a', function(event) {
     if (this.hash !== '') {
       event.preventDefault();
 
@@ -33,9 +33,9 @@ $().ready(() => {
     const scrollPos = $(this).scrollTop();
 
     if (scrollPos >= 30) {
-      $('#navbar').addClass('nav-light');
+      $('#nav-bar').addClass('nav-sticky');
     } else {
-      $('#navbar').removeClass('nav-light ');
+      $('#nav-bar').removeClass('nav-sticky');
     }
   });
 });
