@@ -1,7 +1,9 @@
 // Add event handlers when the DOM is ready
 $(() => {
+  const navbar = $('#nav-bar');
+
   // Set the selected nav item to active
-  $('#nav-bar').on('click', 'a', function() {
+  navbar.on('click', 'a', function() {
     const a = $(this);
     const li = a.parent();
 
@@ -10,9 +12,9 @@ $(() => {
   });
 
   // Smooth scrolling for navbar items
-  $('#nav-bar').on('click', 'a', function(event) {
+  navbar.on('click', 'a', function(e) {
     if (this.hash !== '') {
-      event.preventDefault();
+      e.preventDefault();
 
       var hash = this.hash;
 
@@ -28,14 +30,29 @@ $(() => {
     }
   });
 
-  // Change navbar styling on scroll
-  $(window).scroll(function() {
+  // Change navbar styling when scrolling past the header
+  $(window).scroll(() => {
     const scrollPos = $(this).scrollTop();
+    const offset = 30;
 
-    if (scrollPos >= 30) {
-      $('#nav-bar').addClass('nav-sticky');
-    } else {
-      $('#nav-bar').removeClass('nav-sticky');
-    }
+    scrollPos >= offset
+      ? navbar.addClass('nav-light')
+      : navbar.removeClass('nav-light');
   });
+
+  // Transition the hamburger menu and show/hide secondary nav
+  /*
+  const hamburger = $('.hamburger');
+  hamburger.on('click', () => {
+    if (hamgburger.hasClass('is-active')) {
+      hamgburger.removeClass('is-active');
+      hamburger.css('display', 'none');
+    } else {
+      hamgburger.addClass('is-active');
+      hamburger.css('display', 'block');
+    }
+
+    navbar.toggleClass('hamburger-menu');
+  });
+  */
 });
