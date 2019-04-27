@@ -41,18 +41,9 @@ $(() => {
   });
 
   // Transition the hamburger menu and show/hide secondary nav
-  /*
   const hamburger = $('.hamburger');
   hamburger.on('click', () => {
-    if (hamgburger.hasClass('is-active')) {
-      hamgburger.removeClass('is-active');
-      hamburger.css('display', 'none');
-    } else {
-      hamgburger.addClass('is-active');
-      hamburger.css('display', 'block');
-    }
-
-    navbar.toggleClass('hamburger-menu');
+    hamburger.toggleClass('is-active');
+    $('#nav-bar ul').toggleClass('active');
   });
-  */
 });

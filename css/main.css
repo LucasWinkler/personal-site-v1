@@ -50,9 +50,9 @@ a {
   left: 0;
   right: 0;
   height: 12rem;
-  flex-wrap: nowrap;
   padding: 0.8rem 1.6rem;
   transition: height 0.5s;
+  text-transform: uppercase;
 }
 
 /* Wraps all the nav items and the nav logo */
@@ -62,6 +62,7 @@ a {
   padding: 0 1.5rem;
   max-width: 114rem;
   width: 100%;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
 }
@@ -85,6 +86,7 @@ a {
   padding: 1rem 0;
   margin: 0 3.4rem;
   font-size: 1.8rem;
+  transition: margin 0.3s;
 }
 
 /* Remove the whitespace after the last list item */
@@ -110,4 +112,119 @@ a {
 #nav-bar ul li a:hover::after,
 #nav-bar ul li a.active::after {
   transform: scaleX(1);
+}
+
+.hamburger-toggle {
+  left: 0;
+}
+
+.hamburger:focus {
+  outline: 0;
+}
+
+.hamburger-inner,
+.hamburger-inner::after,
+.hamburger-inner::before,
+.hamburger.is-active .hamburger-inner,
+.hamburger.is-active .hamburger-inner::after,
+.hamburger.is-active .hamburger-inner::before {
+  background-color: #333333;
+}
+
+.hamburger-toggle {
+  position: fixed;
+  left: 0;
+  right: 0;
+  padding: 0 1.5rem;
+  text-align: right;
+  display: none;
+}
+
+@media (max-width: 900px) {
+  #nav-bar ul li a {
+    margin: 0 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #nav-bar ul.active {
+    display: block;
+  }
+
+  .hamburger {
+    padding: 1.5rem;
+    pointer-events: all;
+  }
+
+  .hamburger-toggle {
+    display: block;
+    top: 0;
+    pointer-events: none;
+    /* background: #ffffff; */
+  }
+
+  #nav-bar {
+    padding-top: 0;
+    flex-direction: column;
+    padding: 0;
+  }
+
+  #nav-bar > .container {
+    background: #ffffff;
+    display: block;
+    padding-bottom: 1.5rem;
+  }
+
+  #nav-bar > .container + .logo {
+    z-index: 1;
+  }
+
+  #nav-bar ul {
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-items: center;
+    display: none;
+  }
+
+  #nav-bar ul > li {
+    padding: 0.8rem 0;
+  }
+
+  #nav-bar ul > li:first-child {
+    padding-top: 1.5rem;
+  }
+
+  #nav-bar ul > li:last-child {
+    padding-bottom: 0rem;
+  }
+
+  #nav-bar ul li a {
+    padding-right: 100%;
+  }
+
+  #nav-bar .logo {
+    padding-top: 1.5rem;
+  }
+
+  #nav-bar h1.logo > a {
+    color: #333333;
+  }
+
+  #nav-bar ul li a,
+  #nav-bar .logo {
+    color: #333333;
+    margin: 0;
+  }
+
+  #nav-bar ul li a::after,
+  #nav-bar ul li a.active::after {
+    background: #444444;
+    width: 0;
+    transition: width 0.4s ease-in-out;
+  }
+
+  #nav-bar ul li a:hover::after,
+  #nav-bar ul li a.active::after {
+    width: 100%;
+  }
 }
