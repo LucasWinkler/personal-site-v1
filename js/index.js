@@ -11,32 +11,48 @@ $(() => {
     if (!li.hasClass('logo')) a.addClass('active');
   });
 
-  // Smooth scrolling for navbar items
-  navbar.on('click', 'a', function(e) {
-    if (this.hash !== '') {
-      e.preventDefault();
+  // Smooth scrolling
+  const scrollLink = $('.scroll');
+  scrollLink.click(function(e) {
+    e.preventDefault();
 
-      const hash = this.hash;
+    // nav-bar height
+    const offset = 80;
+    const hash = $(this.hash);
 
-      // The height of the nav-bar when it has been scrolled
-      const offset = 80;
-
-      $('html, body').animate(
-        {
-          scrollTop: $(hash).offset().top - offset
-        },
-        700,
-        function() {
-          window.location.hash = hash;
-        }
-      );
-    }
+    $('html, body').animate(
+      {
+        scrollTop: hash.offset() ? $(this.hash).offset().top - offset : 0
+      },
+      700
+    );
   });
 
-  // Smooth scroll to the top when the logo is clicked
-  $('#nav-bar .logo').click(function(e) {
-    e.preventDefault();
-    $('html, body').animate({ scrollTop: '0' }, 700);
+  // Update active nav item on scroll
+  $(window).scroll(function() {
+    const scrollPos = $(this).scrollTop();
+
+    scrollLink.each(function() {
+      const hash = $(this.hash);
+
+      if (scrollPos <= 0) {
+        $(this).removeClass('active');
+        return;
+      }
+
+      if (!hash.offset()) {
+        return;
+      }
+
+      const offset = hash.offset().top;
+
+      if (offset <= scrollPos) {
+        $(this).addClass('active');
+        $(this)
+          .siblings()
+          .removeClass('active');
+      }
+    });
   });
 
   // Change navbar styling when scrolling past the header
