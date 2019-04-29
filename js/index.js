@@ -44,7 +44,7 @@ $(() => {
         return;
       }
 
-      const offset = hash.offset().top;
+      const offset = hash.offset().top - 80;
 
       if (offset <= scrollPos) {
         $(this).addClass('active');
