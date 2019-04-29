@@ -210,15 +210,16 @@ a {
 #about * #about-heading-container .fab.fa-linkedin-in:hover {
   transform: scale(1.1);
 }
+
 #about * #about-content-container {
   flex: 0 60%;
   margin: 0 auto;
   font-size: 2rem;
 }
+
 #about #about-content-container #about-content-1,
 #about #about-content-container #about-content-2 {
   text-indent: 1.6em;
-  font-size: 2rem;
 }
 
 #about #about-content-container #about-content-1 span,
@@ -255,11 +256,13 @@ footer > .container > a {
   padding: 1.2rem;
   border-radius: 3rem;
   border: 1px solid #eeeeee;
+  transition: transform 0.2s ease;
 }
 
 footer > .container > a:hover {
   color: #ffffff;
   border-color: #ffffff;
+  transform: scale(1.05);
 }
 
 @media (min-width: 769px) {
@@ -285,6 +288,10 @@ footer > .container > a:hover {
   #main-header .hero-text > .container > h2 {
     letter-spacing: 2.2rem;
     font-size: 3.8rem;
+  }
+
+  #about * #about-content-container {
+    font-size: 1.7rem;
   }
 }
 
@@ -383,10 +390,24 @@ footer > .container > a:hover {
     font-size: 3.4rem;
   }
 
-  @media (max-width: 600px) {
-    #main-header .hero-text > .container > h2 {
-      letter-spacing: 1rem;
-      font-size: 3rem;
-    }
+  #about > .container {
+    flex-direction: column;
+    margin: 4rem auto;
+  }
+
+  #about * #about-content-container {
+    font-size: 1.5rem;
+    margin-top: 3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  #main-header .hero-text > .container > h2 {
+    letter-spacing: 1rem;
+    font-size: 3rem;
+  }
+
+  #about * #about-content-container {
+    font-size: 1.3rem;
   }
 }
