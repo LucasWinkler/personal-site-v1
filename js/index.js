@@ -16,11 +16,14 @@ $(() => {
     if (this.hash !== '') {
       e.preventDefault();
 
-      var hash = this.hash;
+      const hash = this.hash;
+
+      // The height of the nav-bar when it has been scrolled
+      const offset = 80;
 
       $('html, body').animate(
         {
-          scrollTop: $(hash).offset().top
+          scrollTop: $(hash).offset().top - offset
         },
         700,
         function() {
@@ -28,6 +31,12 @@ $(() => {
         }
       );
     }
+  });
+
+  // Smooth scroll to the top when the logo is clicked
+  $('#nav-bar .logo').click(function(e) {
+    e.preventDefault();
+    $('html, body').animate({ scrollTop: '0' }, 700);
   });
 
   // Change navbar styling when scrolling past the header
