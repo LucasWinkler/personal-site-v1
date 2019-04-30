@@ -1,74 +1,84 @@
+const navHeight = 80;
+
+// Set the selected nav item to active
+function setActiveNavItem($navLinks, $link) {
+  const $li = $link.parent();
+
+  $navLinks.each(function() {
+    $(this).removeClass('active');
+  });
+
+  if (!$li.hasClass('logo')) $link.addClass('active');
+}
+
+// Scrolls to the link that was clicked
+function scrollToLink(hash) {
+  // If the hash offset is undefined then scroll to
+  // the top else scroll to the top of the hash offset.
+  $('html, body').animate(
+    { scrollTop: hash.offset() ? hash.offset().top - navHeight : 0 },
+    700
+  );
+}
+
+// Sets the active nav item on scroll
+function setActiveNavItemOnScroll($navLinks, $window) {
+  const $scrollPos = $window.scrollTop();
+
+  $navLinks.each(function() {
+    const $link = $(this);
+    const $hash = $(this.hash);
+
+    if ($scrollPos <= 0 || !$hash.offset()) {
+      $link.removeClass('active');
+      return;
+    }
+
+    const scrollOffset = $hash.offset().top - navHeight;
+
+    if ($scrollPos >= scrollOffset) {
+      $link.addClass('active');
+      $link.siblings().removeClass('active');
+    }
+  });
+}
+
+// Toggles the light nav and transparent nav
+function toggleLightNav($window) {
+  const $nav = $('#nav-bar');
+
+  $nav.toggleClass('nav-light', $window.scrollTop() > $nav.height());
+}
+
+// Toggles the nav menu and hamburger menu
+function toggleHamburgerMenu($hamburgerButton) {
+  $hamburgerButton.toggleClass('is-active');
+  $('#nav-bar ul').toggleClass('active');
+}
+
 // Add event handlers when the DOM is ready
 $(() => {
-  const navbar = $('#nav-bar');
+  const $navLinks = $('#nav-bar a');
+  const $scrollingLinks = $('a.scroll');
+  const $hamburgerButton = $('.hamburger');
 
-  // Set the selected nav item to active
-  navbar.on('click', 'a', function() {
-    const a = $(this);
-    const li = a.parent();
-
-    $('#nav-bar ul li a').removeClass('active');
-    if (!li.hasClass('logo')) a.addClass('active');
+  $navLinks.click(function() {
+    setActiveNavItem($navLinks, $(this));
   });
 
-  // Smooth scrolling
-  const scrollLink = $('.scroll');
-  scrollLink.click(function(e) {
+  $scrollingLinks.click(function(e) {
     e.preventDefault();
-
-    // nav-bar height
-    const offset = 80;
-    const hash = $(this.hash);
-
-    $('html, body').animate(
-      {
-        scrollTop: hash.offset() ? $(this.hash).offset().top - offset : 0
-      },
-      700
-    );
+    scrollToLink($(this.hash));
   });
 
-  // Update active nav item on scroll
   $(window).scroll(function() {
-    const scrollPos = $(this).scrollTop();
+    const $window = $(this);
 
-    scrollLink.each(function() {
-      const hash = $(this.hash);
-
-      if (scrollPos <= 0) {
-        $(this).removeClass('active');
-        return;
-      }
-
-      if (!hash.offset()) {
-        return;
-      }
-
-      const offset = hash.offset().top - 80;
-
-      if (offset <= scrollPos) {
-        $(this).addClass('active');
-        $(this)
-          .siblings()
-          .removeClass('active');
-      }
-    });
+    setActiveNavItemOnScroll($navLinks, $window);
+    toggleLightNav($window);
   });
 
-  // Change navbar styling when scrolling past the header
-  $(window).scroll(() => {
-    const scrollPos = $(this).scrollTop();
-    const offset = 30;
-
-    scrollPos >= offset
-      ? navbar.addClass('nav-light')
-      : navbar.removeClass('nav-light');
-  });
-
-  // Transition the hamburger menu and show/hide secondary nav
-  const hamburger = $('.hamburger');
-  hamburger.on('click', () => {
-    hamburger.toggleClass('is-active');
-    $('#nav-bar ul').toggleClass('active');
+  $hamburgerButton.click(function() {
+    toggleHamburgerMenu($hamburgerButton);
   });
 });
