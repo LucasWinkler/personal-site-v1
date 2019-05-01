@@ -23,9 +23,12 @@ a {
 /* Utility Classes */
 
 .container {
-  max-width: 120rem;
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 114rem;
 }
 
 /* Main Header and Navbar */
@@ -79,6 +82,7 @@ a {
   padding: 0.8rem 1.6rem;
   text-transform: uppercase;
   transition: height 0.4s ease;
+  z-index: 1;
 }
 
 /* Wraps all the nav items and the nav logo */
@@ -86,7 +90,6 @@ a {
   display: flex;
   margin: 0 auto;
   padding: 0 1.5rem;
-  max-width: 114rem;
   width: 100%;
   flex-wrap: nowrap;
   align-items: center;
@@ -150,14 +153,14 @@ a {
 }
 
 #main-header .hero-text > .container {
-  max-width: 80rem;
+  max-width: 75rem;
   padding: 2rem;
   border: 2px solid #ffffff;
 }
 
 #main-header .hero-text > .container > h2 {
-  letter-spacing: 3.4rem;
-  margin-right: -3.4rem;
+  letter-spacing: 1vw;
+  margin-right: -1vw;
   font-size: 4rem;
   font-weight: bold;
   transition: all 0.3s;
@@ -165,7 +168,7 @@ a {
 }
 
 #main-header .hero-text > .container > hr {
-  width: 80%;
+  width: 60%;
   margin: 0 auto;
   color: #ffffff;
 }
@@ -175,8 +178,27 @@ a {
   padding-top: 1.5rem;
 }
 
+#main-header .scroll-down-icon {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -2rem;
+  margin-bottom: 1rem;
+  width: 40px;
+  height: 40px;
+  font-size: 3.2rem;
+  color: #ffffff;
+  opacity: 0.6;
+  transition: opacity 0.2s ease-in;
+}
+
+#main-header .scroll-down-icon:hover {
+  opacity: 1;
+}
+
 #about {
   height: 36rem;
+  color: #333333;
 }
 
 #about #about-heading {
@@ -185,6 +207,7 @@ a {
 
 #about > .container {
   display: flex;
+  justify-content: space-evenly;
   align-items: center;
   height: 100%;
 }
@@ -193,6 +216,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  padding-top: 3rem;
   width: 16rem;
   font-size: 2rem;
   height: 25%;
@@ -213,13 +237,13 @@ a {
 
 #about * #about-content-container {
   flex: 0 60%;
-  margin: 0 auto;
   font-size: 2rem;
 }
 
 #about #about-content-container #about-content-1,
 #about #about-content-container #about-content-2 {
   text-indent: 1.6em;
+  max-width: 78rem;
 }
 
 #about #about-content-container #about-content-1 span,
@@ -285,11 +309,6 @@ footer > .container > a:hover {
 }
 
 @media (max-width: 1000px) {
-  #main-header .hero-text > .container > h2 {
-    letter-spacing: 2.2rem;
-    font-size: 3.8rem;
-  }
-
   #about * #about-content-container {
     font-size: 1.7rem;
   }
@@ -381,33 +400,27 @@ footer > .container > a:hover {
   #nav-bar ul li a.active::after {
     width: 100%;
   }
-  #main-header .hero-text > .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-  #main-header .hero-text > .container > h2 {
-    letter-spacing: 1.4rem;
-    font-size: 3.4rem;
-  }
 
   #about > .container {
     flex-direction: column;
-    margin: 4rem auto;
+    justify-content: center;
   }
 
   #about * #about-content-container {
-    font-size: 1.65rem;
     margin-top: 3rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+
+    font-size: 2.4rem;
+  }
+
+  #about * #about-content-container #about-content-2 {
+    display: none;
   }
 }
 
 @media (max-width: 600px) {
-  #main-header .hero-text > .container > h2 {
-    letter-spacing: 1rem;
-    font-size: 3rem;
-  }
-
   #about * #about-content-container {
-    font-size: 1.4rem;
+    font-size: 2rem;
   }
 }
